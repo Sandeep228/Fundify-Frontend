@@ -26,7 +26,7 @@ function Copyright(props) {
       align='center'
       {...props}
     >
-      Encore © {new Date().getFullYear()}
+      Fundify © {new Date().getFullYear()}
     </Typography>
   );
 }
