@@ -30,16 +30,7 @@ function Creators() {
       .catch((err) => {});
   }, []);
 
-  const getImage = (pageName) => {
-    return (
-      SERVER_URL +
-      "/images/creators/" +
-      pageName +
-      "/profile/" +
-      pageName +
-      ".jpg"
-    );
-  };
+  
 
   const [subscription, setSubscription] = React.useState(129);
 
@@ -51,24 +42,29 @@ function Creators() {
   return (
     <Grid
       container
-      style={{ padding: "4rem", backgroundColor: "black" }}
-      spacing={3}
+      style={{ padding: "4rem", backgroundColor: "black",display:"flex" }}
+      spacing={7}
     >
       {creators.map((element) => {
         return (
-          <Grid item style={{ marginLeft: "52px" }}>
+          <Grid item style={{ marginLeft: "0px" }}>
             <Card
-              sx={{ width: 345 }}
-              elevation={4}
-              key={element.pageName}
-              style={{
-                // borderRadius: "22px",
-                margin: "0 auto",
-                boxShadow: "0 4px 8px teal",
-                borderRadius: "8px",
-                backgroundColor: "#424242 ",
-              }}
-            >
+  sx={{
+    width: 345,
+    "&:hover": {
+      boxShadow: "0 4px 8px white", // Update with your desired shadow style
+    },
+  }}
+  elevation={4}
+  key={element.pageName}
+  style={{
+    margin: "0 auto",
+    borderRadius: "8px",
+    backgroundColor: "#222222",
+    color: "white",
+    padding:"10px"
+  }}
+>
               <CardMedia
                 component="img"
                 height="200"
@@ -76,14 +72,15 @@ function Creators() {
                 alt={element.pageName}
                 style={{
                   paddingInline: "1rem",
-                  paddingTop: ".5rem",
+                  paddingTop: ".8rem",
+                  color:"white"
                 }}
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {element.pageName}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="white">
                   {element.description}
                 </Typography>
               </CardContent>
@@ -92,6 +89,9 @@ function Creators() {
                   paddingInline: "1rem",
                   paddingTop: "0rem",
                   paddingBottom: "1rem",
+                  display: "flex",
+                  justifyContent: "space-between"
+                  
                 }}
               >
                 <FormControl
@@ -125,7 +125,7 @@ function Creators() {
                   sx={{
                     backgroundColor: "#555555",
                     "&:hover": {
-                      backgroundColor: "#666666",
+                      backgroundColor: "#D10000",
                     },
                   }}
                   style={{}}
