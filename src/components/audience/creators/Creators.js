@@ -82,7 +82,7 @@ function Creators() {
               <CardMedia
                 component='img'
                 height='200'
-                image={getImage(element.pageName)}
+                image={element.profileURL}
                 alt={element.pageName}
                 style={{ paddingInline: '1rem', paddingTop: '.5rem' }}
               />

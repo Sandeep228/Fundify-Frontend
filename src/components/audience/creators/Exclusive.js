@@ -81,7 +81,7 @@ function Exclusive() {
 
                   <video height='200' controls>
                     <source
-                      src={videoSrc(element.pageName, element.title)}
+                      src={element.exclusiveURL}
                       type='video/mp4'
                     />
                   </video>

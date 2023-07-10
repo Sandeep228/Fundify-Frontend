@@ -17,10 +17,12 @@ function Exclusive() {
       .catch((err) => {});
   }, []);
 
-  const handleViewExclusive = (pageName) => {
+  const handleViewExclusive = () => {
+    let pageName= localStorage.getItem('pageName');
     axios
       .post(SERVER_URL + '/creator/exclusive/view', { pageName: pageName })
-      .then((response) => setExclusiveData(response.data))
+      .then((response) => {
+        setExclusiveData(response.data)})
       .catch((err) => {});
   };
 
