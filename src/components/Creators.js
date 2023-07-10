@@ -47,7 +47,7 @@ function Creators() {
     >
       {creators.map((element) => {
         return (
-          <Grid item style={{ marginLeft: "0px" }}>
+          <Grid item style={{ marginLeft: "54px" }}>
             <Card
   sx={{
     width: 345,

@@ -85,21 +85,34 @@ export default function Home() {
                   </Grid>
                   <Box
                     style={{
-                      backgroundColor: "grey",
                       borderRadius: "123px",
                       marginLeft: "323px",
                       color: "black",
+                      
                     }}
                   >
-                    <Grid item>
+                    <Grid item >
                       <Button
+                      style={{
+                       
+                        borderLeftWidth:"4px",
+                        backgroundColor:"grey",
+                        color:"white"
+                      }}
                         color="inherit"
                         onClick={() => history.push("/home/creators")}
                       >
                         Explore Creators
                       </Button>
                       <Button
-                        style={{ marginLeft: "4rem" }}
+
+                        style={{ marginLeft: "4rem",
+                       
+                         
+                          borderLeftWidth:"4px",
+                          backgroundColor:"grey",
+                          color:"white"
+                      }}
                         color="inherit"
                         onClick={() => history.push("/home/projects")}
                       >
@@ -151,7 +164,7 @@ export default function Home() {
               </Grid>
             </Grid>
           </Toolbar>
-          <Box borderBottom="1px solid white" marginLeft={9} marginRight={2} />
+          <Box borderBottom="1px solid white" marginLeft={5} marginRight={2} />
         </AppBar>
       </Box>
       <Switch>

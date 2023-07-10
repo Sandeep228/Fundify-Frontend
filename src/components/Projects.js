@@ -25,18 +25,7 @@ function Projects() {
       .catch((err) => {});
   }, []);
 
-  const getImage = (author, name) => {
-    return (
-      SERVER_URL +
-      "/images/creators/" +
-      author +
-      "/projects/" +
-      name +
-      "/" +
-      name +
-      ".jpg"
-    );
-  };
+
 
   const amountRef = React.useRef();
 
@@ -79,17 +68,24 @@ function Projects() {
       {projects.length > 0 &&
         projects.map((element) => {
           return (
-            <Grid item style={{ marginLeft: "52px" }}>
+            <Grid item style={{ marginLeft: "52px" }} >
               <Card
-                sx={{ width: 345 }}
+               sx={{
+                width: 345,
+                "&:hover": {
+                  boxShadow: "0 4px 8px white", // Update with your desired shadow style
+                },
+              }}
+             
                 elevation={4}
                 key={element.title}
                 style={{
                   // borderRadius: "22px",
                   margin: "0 auto",
-                  boxShadow: "0 4px 8px teal",
                   borderRadius: "8px",
-                  backgroundColor: "#424242 ",
+                  backgroundColor: "#222222",
+                  color: "white",
+                 
                 }}
               >
                 <CardMedia
@@ -97,13 +93,16 @@ function Projects() {
                   height="200"
                   image={element.projectURL}
                   alt={element.title}
-                  style={{ paddingInline: "1rem", paddingTop: ".5rem" }}
+                  style={{ paddingInline: "1rem", 
+                  paddingTop: ".5rem",
+                  color:"white" 
+                }}
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {element.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="white">
                     {element.description}
                   </Typography>
                 </CardContent>
@@ -122,38 +121,36 @@ function Projects() {
                     <Grid item>
                       <Grid container spacing={2}>
                         <Grid item>
-                          <small style={{ color: "blue" }}>
+                          <b style={{ color: "orange" }}>
                             Required:&ensp;₹&nbsp;{element.amount}
-                          </small>
+                          </b>
                         </Grid>
                         <Grid item>
-                          <small style={{ color: "green" }}>
+                          <b style={{ color: "lime" }}>
                             Raised:&ensp;₹ {getRaisedAmount(element.audience)}
-                          </small>
+                          </b>
                         </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
                 </CardActions>
+                <Typography paddingLeft={2} color="lightgrey"><b>Amount (in ₹)</b></Typography>
                 <CardActions>
-                  <Grid container justifyContent="flex-end" alignItems="center">
-                    <Typography color="primary">Amount (in ₹)&ensp;</Typography>
+                  <Grid container paddingX={1} justifyContent="space-between" alignItems="center">
                     <input
                       type="number"
                       size={10}
                       ref={amountRef}
-                      style={{ paddingBlock: ".25rem" }}
+                      style={{ paddingBlock: ".25rem",backgroundColor:"black", color:"white" }}
+                     
                     />
+                    <br/>
                     <span style={{ marginInline: ".25rem" }}></span>
                     <Button
-                      sx={{
-                        backgroundColor: "#555555",
-                        "&:hover": {
-                          backgroundColor: "#666666",
-                        },
-                      }}
-                      style={{ paddingTop: "1px" }}
-                      color="inherit"
+             
+                      style={{ paddingTop: "1px", backgroundColor: "teal",
+                      color:"white" }}
+                 
                       size="small"
                       onClick={() =>
                         handlePledge(element.pageName, element.title)
