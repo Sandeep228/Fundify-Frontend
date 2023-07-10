@@ -1,20 +1,20 @@
-import React from 'react';
-import axios from 'axios';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { SERVER_URL } from '../../../constant/serverUrl';
+import React from "react";
+import axios from "axios";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { SERVER_URL } from "../../../constant/serverUrl";
 import {
   FormControl,
   FormControlLabel,
   Radio,
   RadioGroup,
-} from '@mui/material';
-import { useHistory } from 'react-router';
+} from "@mui/material";
+import { useHistory } from "react-router";
 
 function Creators() {
   let history = useHistory();
@@ -23,7 +23,7 @@ function Creators() {
 
   React.useEffect(() => {
     axios
-      .get(SERVER_URL + '/creators')
+      .get(SERVER_URL + "/creators")
       .then((response) => {
         setCreators(response.data);
       })
@@ -33,11 +33,11 @@ function Creators() {
   const getImage = (pageName) => {
     return (
       SERVER_URL +
-      '/images/creators/' +
+      "/images/creators/" +
       pageName +
-      '/profile/' +
+      "/profile/" +
       pageName +
-      '.jpg'
+      ".jpg"
     );
   };
 
@@ -45,16 +45,16 @@ function Creators() {
 
   const handleSubscribe = (pageName) => {
     axios
-      .post(SERVER_URL + '/creator/subscribe', {
-        audienceEmail: localStorage.getItem('email'),
+      .post(SERVER_URL + "/creator/subscribe", {
+        audienceEmail: localStorage.getItem("email"),
         amount: subscription,
         pageName: pageName,
-        firstName: localStorage.getItem('firstName'),
-        lastName: localStorage.getItem('lastName'),
+        firstName: localStorage.getItem("firstName"),
+        lastName: localStorage.getItem("lastName"),
       })
       .then(() => {
         axios
-          .get(SERVER_URL + '/creators')
+          .get(SERVER_URL + "/creators")
           .then((response) => {
             setCreators(response.data);
           })
@@ -66,7 +66,7 @@ function Creators() {
   const alreadySubscribed = (audiences) => {
     let alreadySubscribed = false;
     audiences.forEach((element, index) => {
-      if (element.audienceEmail === localStorage.getItem('email')) {
+      if (element.audienceEmail === localStorage.getItem("email")) {
         alreadySubscribed = true;
       }
     });
@@ -74,68 +74,105 @@ function Creators() {
   };
 
   return (
-    <Grid container style={{ padding: '2rem' }} spacing={4}>
+    <Grid
+      container
+      style={{
+        padding: "2rem",
+        backgroundColor: "black",
+        paddingLeft: "120px",
+      }}
+      spacing={8}
+    >
       {creators.map((element) => {
         return (
-          <Grid item>
-            <Card sx={{ width: 345 }} elevation={4} key={element.pageName}>
+          <Grid style={{ background: "black" }} item>
+            <Card
+              style={{
+                margin: "0 auto",
+                borderRadius: "8px",
+                backgroundColor: "#222222",
+                color: "white",
+                padding: "10px",
+              }}
+              sx={{
+                width: 345,
+                "&:hover": {
+                  boxShadow: "0px 4px 4px white !important", // Update with your desired shadow style
+                },
+              }}
+              elevation={4}
+              key={element.pageName}
+            >
               <CardMedia
-                component='img'
-                height='200'
+                component="img"
+                height="200"
                 image={element.profileURL}
                 alt={element.pageName}
-                style={{ paddingInline: '1rem', paddingTop: '.5rem' }}
+                style={{ paddingInline: "1rem", paddingTop: ".5rem" }}
               />
               <CardContent>
-                <Typography gutterBottom variant='h5' component='div'>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  color="white"
+                  component="div"
+                >
                   {element.pageName}
                 </Typography>
-                <Typography variant='body2' color='text.secondary'>
+                <Typography variant="body2" color="white">
                   {element.description}
                 </Typography>
               </CardContent>
               <CardActions
                 style={{
-                  paddingInline: '1rem',
-                  paddingTop: '0rem',
-                  paddingBottom: '1rem',
+                  paddingInline: "1rem",
+                  paddingTop: "0rem",
+                  paddingBottom: "1rem",
                 }}
               >
                 <FormControl
-                  component='fieldset'
+                  component="fieldset"
                   style={{
-                    marginRight: '.5rem',
+                    marginRight: ".5rem",
                   }}
                 >
                   <RadioGroup
                     row
-                    aria-label='subscription'
-                    name='subscription'
-                    defaultValue='129'
+                    aria-label="subscription"
+                    name="subscription"
+                    defaultValue="129"
                     onChange={(event) => {
                       setSubscription(Number(event.target.value));
                     }}
                   >
                     <FormControlLabel
-                      value='129'
+                      value="129"
                       control={<Radio />}
-                      label='₹129'
+                      label="₹129"
                     />
                     <FormControlLabel
-                      value='299'
+                      value="299"
                       control={<Radio />}
-                      label='₹299'
+                      label="₹299"
                     />
                   </RadioGroup>
                 </FormControl>
                 <Button
-                  variant='outlined'
+                  sx={{
+                    backgroundColor: "#555555",
+                    "&:hover": {
+                      backgroundColor: "#D10000",
+                    },
+                  }}
+                  style={{}}
+                  color="inherit"
+                  // variant="contained"
                   onClick={() => handleSubscribe(element.pageName)}
                   disabled={alreadySubscribed(element.audience)}
                 >
                   {alreadySubscribed(element.audience)
-                    ? 'Subscribed'
-                    : 'Subscribe'}
+                    ? "Subscribed"
+                    : "Subscribe"}
                 </Button>
               </CardActions>
             </Card>
